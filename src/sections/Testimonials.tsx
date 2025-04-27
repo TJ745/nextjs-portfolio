@@ -27,7 +27,7 @@ const testimonials = [
     id: 2,
     name: "Naveed",
     comment:
-      "Your work was outstanding! I was impressed with the quality of your work and the professionalism you showed throughout the project. I highly recommend you for any future projects.",
+      "Very professional work and always delivered on time. Will definitely work again.",
     image: TesPic,
     stars: [1, 1, 1, 0.5],
   },
@@ -35,7 +35,7 @@ const testimonials = [
     id: 3,
     name: "Qureshi",
     comment:
-      "Your work was outstanding! I was impressed with the quality of your work and the professionalism you showed throughout the project. I highly recommend you for any future projects.",
+      "Excellent service and attention to detail. Highly skilled and easy to communicate with.",
     image: TesPic,
     stars: [1, 1, 1, 1, 1],
   },
@@ -45,19 +45,40 @@ function Testimonials() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(false);
   const prevIndex = useRef(0);
-  const slides = useRef([]);
+  const slides = useRef<(HTMLDivElement | null)[]>([]);
+
+  // const leftClickHandler = () => {
+  //   animate(slides.current[index], { scale: 1, rotate: 0 }, { delay: 0.2 });
+  //   animate(slides.current[prevIndex.current]!, { x: "100%" });
+  // };
+
+  // const rightClickHandler = () => {
+  //   animate(slides.current[index], { x: 0 }, { delay: 0.3 });
+  //   animate(slides.current[prevIndex.current]!, {
+  //     scale: index === 0 ? 1 : 0.4,
+  //     rotate: index === 0 ? 0 : index % 2 === 0 ? 10 : -10,
+  //   });
+  // };
 
   const leftClickHandler = () => {
-    animate(slides.current[index], { scale: 1, rotate: 0 }, { delay: 0.2 });
-    animate(slides.current[prevIndex.current], { x: "100%" });
+    const currentSlide = slides.current[index];
+    const prevSlide = slides.current[prevIndex.current];
+    if (currentSlide && prevSlide) {
+      animate(currentSlide, { scale: 1, rotate: 0 }, { delay: 0.2 });
+      animate(prevSlide, { x: "100%" });
+    }
   };
 
   const rightClickHandler = () => {
-    animate(slides.current[index], { x: 0 }, { delay: 0.3 });
-    animate(slides.current[prevIndex.current], {
-      scale: index === 0 ? 1 : 0.4,
-      rotate: index === 0 ? 0 : index % 2 === 0 ? 10 : -10,
-    });
+    const currentSlide = slides.current[index];
+    const prevSlide = slides.current[prevIndex.current];
+    if (currentSlide && prevSlide) {
+      animate(currentSlide, { x: 0 }, { delay: 0.3 });
+      animate(prevSlide, {
+        scale: index === 0 ? 1 : 0.4,
+        rotate: index === 0 ? 0 : index % 2 === 0 ? 10 : -10,
+      });
+    }
   };
 
   useEffect(() => {
@@ -90,11 +111,13 @@ function Testimonials() {
                   initial={{ x: "100%" }}
                   key={i}
                   className="absolute inset-0 flex flex-col justify-center items-center gap-y-7 border bg-zinc-50 dark:bg-zinc-500 p-14 rounded-xl"
-                  ref={(el) => slides.current.push(el)}
+                  ref={(el) => {
+                    slides.current[i] = el;
+                  }}
                 >
                   <Image
                     src={item.image}
-                    alt="TestimonialPic"
+                    alt={`Testimonial from ${item.name}`}
                     width={130}
                     height={130}
                     className="w-[130px] rounded-full aspect-square border p-4 object-contain"
@@ -124,6 +147,8 @@ function Testimonials() {
                 </motion.div>
               ))}
             </motion.div>
+
+            {/* Arrows */}
             <div
               className="flex gap-x-4
              text-4xl mt-5"
@@ -135,8 +160,12 @@ function Testimonials() {
                     : "opacity-100 pointer-events-auto"
                 } hover:scale-150 transition-all`}
                 onClick={() => {
-                  setDirection(true);
-                  setIndex(index - 1);
+                  // setDirection(true);
+                  // setIndex(index - 1);
+                  if (index > 0) {
+                    setDirection(true);
+                    setIndex(index - 1);
+                  }
                 }}
               >
                 {arrowIcons[0]}
@@ -148,8 +177,12 @@ function Testimonials() {
                     : "opacity-100 pointer-events-auto"
                 } hover:scale-150 transition-all`}
                 onClick={() => {
-                  setDirection(false);
-                  setIndex(index + 1);
+                  // setDirection(false);
+                  // setIndex(index + 1);
+                  if (index < testimonials.length - 1) {
+                    setDirection(false);
+                    setIndex(index + 1);
+                  }
                 }}
               >
                 {arrowIcons[1]}

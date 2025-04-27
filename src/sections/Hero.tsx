@@ -68,7 +68,7 @@ function Hero() {
             </div>
             <div className="relative">
               <div className="flex flex-col gap-y-2">
-                <h4 className="text-xl font-semibold">Hello, I'm</h4>
+                <h4 className="text-xl font-semibold">Hello, I&apos;m</h4>
                 <h1 className="text-5xl font-bold uppercase">Talha Jamil</h1>
                 <p className="text-2xl font-semibold mb-8">
                   A Web Designer & Developer
@@ -86,7 +86,7 @@ function Hero() {
           {/* Scroll */}
           <Link
             href="#about"
-            className="hidden md:block absolute  right-[-5px] grid gap-y-1 justify-center items-center hover:text-blue-600 animate-scrolldown transition-all duration-300 scroll-smooth"
+            className=" md:block absolute  right-[-5px] grid gap-y-1 justify-center items-center hover:text-blue-600 animate-scrolldown transition-all duration-300 scroll-smooth"
           >
             <RiMouseLine className="text-2xl" />
             <div className="text-sm whitespace-nowrap rotate-180 mt-2 vertical-text">

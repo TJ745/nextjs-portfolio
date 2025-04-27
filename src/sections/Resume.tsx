@@ -34,6 +34,8 @@ const frontendSkills = [
   },
 ];
 
+// const resumeItems = [...]; // Assuming this is defined somewhere else in your code
+
 function Resume() {
   return (
     <section className="section" id="resume">
@@ -183,7 +185,7 @@ const resumeItems = [
             {/* skills */}
             <div className="grid place-items-center grid-cols-2 gap-x-16 gap-y-8 px-12">
               {frontendSkills.map((item, index) => (
-                <div className="flex gap-x-4">
+                <div className="flex gap-x-4" key={index}>
                   {item.icon}
                   <div className="flex flex-col gap-y-1">
                     <h5 className="font-semibold text-lg">{item.title}</h5>

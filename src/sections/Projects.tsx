@@ -1,13 +1,22 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
+// import Link from "next/link";
 import React, { useRef, useState } from "react";
 import { RiArrowRightUpLine } from "react-icons/ri";
 import ProjectPic from "../assets/images/Avatar.jpeg";
-import Testimonials from "./Testimonials";
+// import Testimonials from "./Testimonials";
 import Modal from "@/components/Modal";
 
-const projects = [
+interface Project {
+  id: number;
+  title: string;
+  imagePath: any;
+  description?: string;
+  link?: string;
+  tech: string[];
+}
+
+const projects: Project[] = [
   {
     id: 1,
     title: "Project 1",
@@ -21,6 +30,7 @@ const projects = [
     id: 2,
     title: "Project 2",
     imagePath: ProjectPic,
+    description: "JavaScript-focused project with modern interactivity.",
     link: "",
     tech: ["JavaScript"],
   },
@@ -28,6 +38,7 @@ const projects = [
     id: 3,
     title: "Project 3",
     imagePath: ProjectPic,
+    description: "A CSS-based design project with animations.",
     link: "",
     tech: ["CSS"],
   },
@@ -45,14 +56,14 @@ const projectButtons = [
 
 function Projects() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentProject, setCurrentProject] = useState<any>(null);
+  const [currentProject, setCurrentProject] = useState<Project | null>(null);
   const [tech, setTech] = useState("All");
   const [index, setIndex] = useState(0);
-  const prevIndex = useRef(0);
-  const buttonRef = useRef([]);
+  // const prevIndex = useRef(0);
+  const buttonRef = useRef<(HTMLButtonElement | null)[]>([]);
 
   // Open modal with selected project
-  const openModal = (project: any) => {
+  const openModal = (project: Project) => {
     setCurrentProject(project);
     setIsModalOpen(true);
   };
@@ -75,7 +86,10 @@ function Projects() {
             {projectButtons.map((text, i) => (
               <button
                 key={i}
-                ref={(el) => buttonRef.current.push(el)}
+                // ref={(el) => buttonRef.current.push(el)}
+                ref={(el) => {
+                  buttonRef.current[i] = el;
+                }}
                 onClick={() => {
                   setTech(text);
                   setIndex(i);
@@ -90,7 +104,7 @@ function Projects() {
           </div>
           <div className="flex justify-center items-center gap-x-[75px]">
             <div className="grid place-items-center grid-cols-3 gap-x-12 gap-y-14">
-              {projects
+              {/* {projects
                 .filter((project) => {
                   return project.tech.some((item) =>
                     tech === "All" ? true : item === tech
@@ -100,12 +114,18 @@ function Projects() {
                   <div
                     key={`project.id-${i}`}
                     onClick={() => openModal(project)}
-                  >
+                  > */}
+              {projects
+                .filter((project) =>
+                  tech === "All" ? true : project.tech.includes(tech)
+                )
+                .map((project) => (
+                  <div key={project.id} onClick={() => openModal(project)}>
                     <div className="relative w-[350px] rounded-lg cursor-pointer overflow-hidden group border">
                       <div className="w-[350px] h-[250px]">
                         <Image
                           src={project.imagePath}
-                          alt=""
+                          alt={project.title}
                           width={350}
                           height={250}
                           className="w-full h-[250px]"

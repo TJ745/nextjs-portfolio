@@ -25,14 +25,14 @@ function About() {
             <div className="w-[65%] flex flex-col justify-center">
               <div>
                 <h4 className="mb-[30px] font-semibold text-blue-600 text-xl">
-                  I'm a Web Designer & Developer
+                  I&apos;m a Web Designer & Developer
                 </h4>
                 <p className="leading-6">
-                  I'm a Web Designer & Developer with a passion for creating
-                  visually appealing and user-friendly websites and web
+                  I&apos;m a Web Designer & Developer with a passion for
+                  creating visually appealing and user-friendly websites and web
                   applications. I specialize in HTML, CSS, JavaScript, and
-                  React. I'm always looking for new challenges and opportunities
-                  to learn and grow.
+                  React. I&apos;m always looking for new challenges and
+                  opportunities to learn and grow.
                 </p>
               </div>
               <div className="relative max-w-full grid gap-x-2 gap-y-3 grid-cols-3 my-8">

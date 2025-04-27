@@ -37,7 +37,7 @@ function Header() {
           </div>
           <div className="flex justify-center items-center gap-6">
             <div className="hidden md:block w-fit px-8 py-2 rounded-[35px] curson-pointer duration-[0.3s] border-[2px] hover:bg-blue-600">
-              <Link href="#contact">Let's Talk</Link>
+              <Link href="#contact">Let&apos;s Talk</Link>
             </div>
             <Link
               href="#contact"

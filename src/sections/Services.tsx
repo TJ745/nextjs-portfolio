@@ -1,18 +1,24 @@
 "use client";
-import Modal from "@/components/Modal";
+// import Modal from "@/components/Modal";
 import ServiceModal from "@/components/ServiceModal";
-import Link from "next/link";
+// import Link from "next/link";
 import React, { useState } from "react";
 import {
   RiAlignItemRightFill,
   RiArrowRightUpFill,
-  RiCheckboxCircleFill,
-  RiCloseLine,
+  // RiCheckboxCircleFill,
+  // RiCloseLine,
   RiImageEditLine,
   RiPencilRuler2Fill,
 } from "react-icons/ri";
 
-const services = [
+interface Service {
+  icon: React.ReactNode;
+  title: string;
+  description?: string;
+}
+
+const services: Service[] = [
   {
     icon: <RiPencilRuler2Fill className="text-7xl" />,
     title: "Web Design",
@@ -22,16 +28,20 @@ const services = [
   {
     icon: <RiImageEditLine className="text-7xl" />,
     title: "Graphic Design",
+    description:
+      "Creative visual solutions for digital and print with 5+ years of experience in branding, logos, and layouts.",
   },
   {
     icon: <RiAlignItemRightFill className="text-7xl" />,
     title: "UI/UX Design",
+    description:
+      "User-focused interface design tailored to modern usability standards and accessibility.",
   },
 ];
 
 function Services() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentService, setCurrentService] = useState<any>(null);
+  const [currentService, setCurrentService] = useState<Service | null>(null);
 
   // Open modal with selected project
   const openModal = (service: any) => {

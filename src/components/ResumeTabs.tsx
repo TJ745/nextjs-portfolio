@@ -1,11 +1,20 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 
-function ResumeTabs({ items }: any) {
+interface ResumeTabItem {
+  title: React.ReactNode;
+  content: React.ReactNode;
+}
+
+interface ResumeTabsProps {
+  items: ResumeTabItem[];
+}
+
+function ResumeTabs({ items }: ResumeTabsProps) {
   const [activeTab, setActiveTab] = useState(0);
-  const firstBtnRef = useRef(null);
+  const firstBtnRef = useRef<HTMLButtonElement | null>(null);
   useEffect(() => {
-    firstBtnRef.current.focus();
+    firstBtnRef.current?.focus();
   }, []);
   return (
     <div>
