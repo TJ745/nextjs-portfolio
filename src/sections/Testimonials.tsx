@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import TesPic from "../assets/images/Avatar.jpeg";
 import {
@@ -11,10 +11,30 @@ import {
 import { motion } from "motion/react";
 import { animate } from "motion";
 
-const starIcons = [<RiStarFill />, <RiStarHalfLine />];
-const arrowIcons = [<RiArrowLeftSLine />, <RiArrowRightSLine />];
+// const starIcons = {
+//   full: <RiStarFill />,
+//   half: <RiStarHalfLine />,
+// };
 
-const testimonials = [
+// const arrowIcons = {
+//   left: <RiArrowLeftSLine />,
+//   right: <RiArrowRightSLine />,
+// };
+
+const getStarIcon = (value: number) =>
+  value === 1 ? <RiStarFill /> : <RiStarHalfLine />;
+const getArrowIcon = (dir: "left" | "right") =>
+  dir === "left" ? <RiArrowLeftSLine /> : <RiArrowRightSLine />;
+
+interface Testimonial {
+  id: number;
+  name: string;
+  comment: string;
+  image: StaticImageData;
+  stars: number[];
+}
+
+const testimonials: Testimonial[] = [
   {
     id: 1,
     name: "Sohail",
@@ -81,9 +101,18 @@ function Testimonials() {
     }
   };
 
+  // useEffect(() => {
+  //   direction ? leftClickHandler() : rightClickHandler();
+  //   prevIndex.current = index;
+  // }, [index]);
+
   useEffect(() => {
-    direction ? leftClickHandler() : rightClickHandler();
-    prevIndex.current = index;
+    if (direction) {
+      leftClickHandler(); // Call leftClickHandler when direction is true
+    } else {
+      rightClickHandler(); // Call rightClickHandler when direction is false
+    }
+    prevIndex.current = index; // Update prevIndex with the current index
   }, [index]);
 
   return (
@@ -109,7 +138,7 @@ function Testimonials() {
               {testimonials.map((item, i) => (
                 <motion.div
                   initial={{ x: "100%" }}
-                  key={i}
+                  key={item.id}
                   className="absolute inset-0 flex flex-col justify-center items-center gap-y-7 border bg-zinc-50 dark:bg-zinc-500 p-14 rounded-xl"
                   ref={(el) => {
                     slides.current[i] = el;
@@ -138,8 +167,9 @@ function Testimonials() {
                     </span>
                     <div className="flex items-center gap-x-2 text-2xl text-yellow-500">
                       {item.stars.map((star, i) => (
-                        <span key={i}>
-                          {star === 1 ? starIcons[0] : starIcons[1]}
+                        <span key={`star-${item.id}-${i}`}>
+                          {/* {star === 1 ? starIcons.full : starIcons.half} */}
+                          {getStarIcon(star)}
                         </span>
                       ))}
                     </div>
@@ -168,7 +198,7 @@ function Testimonials() {
                   }
                 }}
               >
-                {arrowIcons[0]}
+                {getArrowIcon("left")}
               </button>
               <button
                 className={`${
@@ -185,7 +215,7 @@ function Testimonials() {
                   }
                 }}
               >
-                {arrowIcons[1]}
+                {getArrowIcon("right")}
               </button>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import React from "react";
 import { RiCloseLine } from "react-icons/ri";
 
@@ -7,7 +7,7 @@ interface ModalProps {
   onClose: () => void;
   title: string;
   description: string;
-  imagePath: string;
+  imagePath: StaticImageData | string;
 }
 
 function Modal({ isOpen, onClose, title, description, imagePath }: ModalProps) {

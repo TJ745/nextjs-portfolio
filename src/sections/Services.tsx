@@ -44,7 +44,7 @@ function Services() {
   const [currentService, setCurrentService] = useState<Service | null>(null);
 
   // Open modal with selected project
-  const openModal = (service: any) => {
+  const openModal = (service: Service) => {
     setCurrentService(service);
     setIsModalOpen(true);
   };

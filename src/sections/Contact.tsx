@@ -106,7 +106,8 @@ function Contact() {
               {/* con form container */}
               <div className="relative w-full px-12 py-8 rounded-[35px] bg-dark-secondary">
                 <h2 className="font-bold text-xl mb-2 uppercase">
-                  Let's work <span className="text-heading">together.</span>
+                  Let&apos;s work
+                  <span className="text-heading">together.</span>
                 </h2>
                 <p className="mb-4 text-sm">
                   Please fill out the form on this section to contact with me. I

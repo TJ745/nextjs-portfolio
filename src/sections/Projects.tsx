@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 // import Link from "next/link";
 import React, { useRef, useState } from "react";
 import { RiArrowRightUpLine } from "react-icons/ri";
@@ -10,7 +10,7 @@ import Modal from "@/components/Modal";
 interface Project {
   id: number;
   title: string;
-  imagePath: any;
+  imagePath: StaticImageData;
   description?: string;
   link?: string;
   tech: string[];
