@@ -113,7 +113,7 @@ function Testimonials() {
       rightClickHandler(); // Call rightClickHandler when direction is false
     }
     prevIndex.current = index; // Update prevIndex with the current index
-  }, [index]);
+  }, [index, direction]);
 
   return (
     <section className="section" id="testimonials">
