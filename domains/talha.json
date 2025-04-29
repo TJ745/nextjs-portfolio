@@ -1,9 +1,11 @@
 {
-    "owner": {
-        "username": "TJ745",
-        "email": "talha_mughalz@hotmail.com"
-    },
+   "name": "TJ745",
+  "subdomain": "is-a",
+  "owner": {
+    "repo": "https://github.com/TJ745/nextjs-portfolio",
+    "email": "talha_mughalz@hotmail.com"
+  },
     "record": {
-        "CNAME": "nextjs-portfolio-gamma-kohl.vercel.app"
+        "CNAME": "http://nextjs-portfolio-gamma-kohl.vercel.app/"
     }
 }
