@@ -6,6 +6,7 @@
     "email": "talha_mughalz@hotmail.com"
   },
     "record": {
-        "CNAME": "http://nextjs-portfolio-gamma-kohl.vercel.app/"
+        "CNAME": "nextjs-portfolio-gamma-kohl.vercel.app",
+    "TXT": "vc-domain-verify=talha.is-a.dev,5d9261fbb2f87f167d31"
     }
 }
